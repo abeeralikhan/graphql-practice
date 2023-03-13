@@ -11,12 +11,10 @@ const typeDefs = gql`
 // Must match the schema definition
 const resolvers = {
   Query: {
-    greeting: () => "Hello World",
+    greeting: () => "Hello there!",
   },
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
-
-const { url } = await server.listen({ port: 9000 });
-
+const { url } = await server.listen({ port: 3000 });
 console.log(`Server is listening at ${url}`);
