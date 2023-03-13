@@ -1,9 +1,22 @@
-import { gql } from "apollo-server";
+import { ApolloServer, gql } from "apollo-server";
 
+// typeDefs --> represents abstract syntax tree of the gql code
 const typeDefs = gql`
   type Query {
     greeting: String
   }
 `;
 
-// typeDefs --> represents abstract syntax tree of the gql code
+// Resolves the query into data
+// Must match the schema definition
+const resolvers = {
+  Query: {
+    greeting: () => "Hello World",
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+const { url } = await server.listen({ port: 9000 });
+
+console.log(`Server is listening at ${url}`);
